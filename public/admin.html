@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - REDOX Information</title>
+    <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-container">
+            <div class="login-card">
+                <h1 class="login-title">Admin Login</h1>
+                <p class="login-subtitle">REDOX Information Dashboard</p>
+
+                <form id="loginForm" class="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            required
+                            placeholder="Enter username"
+                            autocomplete="username"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            required
+                            placeholder="Enter password"
+                            autocomplete="current-password"
+                        >
+                    </div>
+
+                    <div id="loginError" class="error-message" style="display: none;"></div>
+
+                    <button type="submit" class="login-btn">
+                        <span class="btn-text">Login</span>
+                        <span class="btn-loader" style="display: none;">
+                            <span class="spinner"></span> Logging in...
+                        </span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashboardScreen" class="dashboard-screen" style="display: none;">
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>REDOX Information Dashboard</h1>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <main class="dashboard-main">
+            <div class="dashboard-container">
+                <!-- Stats Cards -->
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <div class="stat-icon">👥</div>
+                        <div class="stat-content">
+                            <h3 class="stat-label">Total Submissions</h3>
+                            <p class="stat-value" id="totalSubmissions">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <h3 class="stat-label">Last 7 Days</h3>
+                            <p class="stat-value" id="recentSubmissions">0</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">📈</div>
+                        <div class="stat-content">
+                            <h3 class="stat-label">This Month</h3>
+                            <p class="stat-value" id="monthSubmissions">0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Access Code Section -->
+                <div class="section">
+                    <div class="section-card">
+                        <h2 class="section-title">Access Code Management</h2>
+                        <p class="section-description">Update the access code required for users to access ASEA GPT ONE</p>
+
+                        <form id="accessCodeForm" class="access-code-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="currentAccessCode">Current Access Code</label>
+                                    <input
+                                        type="text"
+                                        id="currentAccessCode"
+                                        readonly
+                                        placeholder="Loading..."
+                                        class="readonly-input"
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="newAccessCode">New Access Code</label>
+                                    <input
+                                        type="text"
+                                        id="newAccessCode"
+                                        name="newAccessCode"
+                                        required
+                                        placeholder="Enter new access code"
+                                    >
+                                </div>
+                            </div>
+
+                            <div id="accessCodeMessage" class="message" style="display: none;"></div>
+
+                            <button type="submit" class="update-btn">
+                                <span class="btn-text">Update Access Code</span>
+                                <span class="btn-loader" style="display: none;">
+                                    <span class="spinner"></span> Updating...
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Submissions Table -->
+                <div class="section">
+                    <div class="section-card">
+                        <div class="section-header">
+                            <div>
+                                <h2 class="section-title">User Submissions</h2>
+                                <p class="section-description">All users who have submitted the access form</p>
+                            </div>
+                            <button id="refreshBtn" class="refresh-btn">
+                                <span class="refresh-icon">🔄</span> Refresh
+                            </button>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="submissions-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Submission Date</th>
+                                        <th>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="submissionsTableBody">
+                                    <tr>
+                                        <td colspan="5" class="loading-row">
+                                            <div class="loader"></div> Loading submissions...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="noSubmissions" class="no-data" style="display: none;">
+                            <div class="no-data-icon">📋</div>
+                            <p>No submissions yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>
